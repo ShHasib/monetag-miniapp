@@ -1,60 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ADBD LAB (Online)</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Start Earning</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 50px;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .button:disabled {
+      background-color: gray;
+    }
+    #countdown {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #444;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Profile -->
-    <div class="profile-box">
-      <img src="profile.jpg" alt="Profile" class="profile-img" />
-      <div>
-        <h2>ADBD LAB (Online)</h2>
-        <p>Balance: BDT 0.00</p>
-      </div>
-    </div>
 
-    <!-- Earnings -->
-    <div class="earnings-box">
-      <div class="earning-card">
-        <p>Today's Earnings</p>
-        <strong>BDT 0.00</strong>
-      </div>
-      <div class="earning-card">
-        <p>Lifetime Earnings</p>
-        <strong>BDT 0.00</strong>
-      </div>
-    </div>
+  <h2>💰 Start Earning Now</h2>
+  <button class="button" onclick="startEarning()" id="startBtn">Start Earning</button>
+  <div id="countdown"></div>
 
-    <!-- Tasks -->
-    <div class="tasks-box">
-      <h3>Today's Tasks</h3>
-      <p>Total Tasks: 50</p>
-      <p>Completed: 0</p>
-      <p>Remaining: 50</p>
-      <div class="progress-bar-bg">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-    </div>
+  <script>
+    function startEarning() {
+      document.getElementById('startBtn').disabled = true;
+      let timeLeft = 10;
+      document.getElementById('countdown').innerText = "⏳ Please wait " + timeLeft + " seconds...";
 
-    <!-- Start Earning Section -->
-    <div class="start-earning">
-      <h3>Start Earning</h3>
-      <button id="startEarningBtn">Withdraw</button>
-    </div>
-  </div>
-
-  <!-- Monetag Ad Script (Replace with your link) -->
-  <script type="text/javascript">
-    function showAd() {
-      // Monetag SmartLink or popup code
-      window.open("https://otieu.com/4/9621332", "_blank");
+      let timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById('countdown').innerText = "⏳ Please wait " + timeLeft + " seconds...";
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById('countdown').innerText = "✅ Redirecting...";
+          window.open("https://otieu.com/4/9621332", "_blank");  // <-- এখানে তোমার Monetag Link
+          document.getElementById('startBtn').disabled = false;
+        }
+      }, 1000);
     }
   </script>
 
-  <script src="script.js"></script>
 </body>
 </html>
