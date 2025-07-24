@@ -2,20 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Earn with Monetag</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ADBD LAB</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>💰 Earn with Monetag</h1>
-      <p id="ref">Referral: None</p>
-      <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Earnings" class="main-img" />
-      <p>🔥 Your Points: <span id="points">0</span></p>
-      <button onclick="submitWithdraw()">🚀 Withdraw</button>
+    <div class="profile-box">
+      <img src="profile.jpg" alt="Profile" class="profile-img" />
+      <div>
+        <h2>ADBD LAB (Online)</h2>
+        <p>Balance: BDT 0.00</p>
+      </div>
+    </div>
+
+    <div class="earnings-box">
+      <div class="earning-card">
+        <p>Today's Earnings</p>
+        <strong>BDT 0.00</strong>
+      </div>
+      <div class="earning-card">
+        <p>Lifetime Earnings</p>
+        <strong>BDT 0.00</strong>
+      </div>
+    </div>
+
+    <div class="tasks-box">
+      <h3>Today's Tasks</h3>
+      <p>Total Tasks: 50</p>
+      <p>Completed: 0</p>
+      <p>Remaining: 50</p>
+      <div class="progress-bar"></div>
+    </div>
+
+    <div class="start-earning">
+      <h3>Start Earning</h3>
+      <button onclick="window.location.href='withdraw.html'">Withdraw</button>
     </div>
   </div>
-  <script src="script.js"></script>
 </body>
 </html>
