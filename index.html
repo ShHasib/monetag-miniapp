@@ -1,24 +1,54 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Earn By Ads</title>
-    <!-- ✅ Correct Monetag Popunder SDK Script -->
-    <script src="https://libtl.com/sdk.js" data-zone="9621423" data-sdk="show_9621423"></script>
-    <style>
-      body { text-align: center; padding-top: 100px; font-family: sans-serif; }
-      button { padding: 12px 24px; font-size: 18px; background: green; color: white; border: none; border-radius: 8px; }
-    </style>
-  </head>
-  <body>
-    <h2>🎯 Earn by Watching Ads</h2>
-    <button onclick="showAd()">👉 Start Earning</button>
-    <p id="status" style="margin-top: 20px;"></p>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monetag Ads Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #showAdBtn {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    #adContainer {
+      display: none; /* প্রথমে লুকানো থাকবে */
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
 
-    <script>
-      function showAd() {
-        document.getElementById("status").innerText = "🔄 Opening ad... Please allow popups!";
-        // This click will trigger Monetag SDK to show popup ad
+  <button id="showAdBtn">এড দেখাও</button>
+
+  <!-- Monetag Auto Ad -->
+  <script src='https://libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
+  <!-- ক্লিক করলে যে এড দেখাবে -->
+  <div id="adContainer">
+    <script src='https://libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
+  </div>
+
+  <script>
+    const btn = document.getElementById('showAdBtn');
+    const adDiv = document.getElementById('adContainer');
+
+    btn.addEventListener('click', () => {
+      if (adDiv.style.display === 'none') {
+        adDiv.style.display = 'block';
+        btn.textContent = 'এড লুকাও';
+      } else {
+        adDiv.style.display = 'none';
+        btn.textContent = 'এড দেখাও';
       }
-    </script>
-  </body>
+    });
+  </script>
+
+</body>
 </html>
