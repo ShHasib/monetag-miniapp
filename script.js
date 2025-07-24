@@ -18,11 +18,23 @@ function withdraw() {
     // চাইলে Firebase বা Google Sheet-এ সংযুক্ত করা যাবে
   }
 }
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const ref = urlParams.get('ref');
-  if (ref) {
-    localStorage.setItem('referrer', ref);
-    document.getElementById('ref').innerText = "Referred by: " + ref;
-  }
-</script>
+// Referral System Code
+const urlParams = new URLSearchParams(window.location.search);
+const ref = urlParams.get('ref');
+if (ref) {
+  localStorage.setItem('referrer', ref);
+  document.getElementById('ref').innerText = "Referred by: " + ref;
+}
+function submitWithdraw() {
+  const phone = prompt("Enter your bKash/Nagad number:");
+  const ref = localStorage.getItem("referrer") || "None";
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      phone: phone,
+      points: localStorage.getItem("points") || 0,
+      referrer: ref
+    }),
+    headers: { "Content-Type": "application/json" }
+  }).then(() => alert("Withdraw request submitted ✅"));
+}
