@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ADBD LAB</title>
+  <title>ADBD LAB (Online)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
+    <!-- Profile -->
     <div class="profile-box">
       <img src="profile.jpg" alt="Profile" class="profile-img" />
       <div>
@@ -16,6 +17,7 @@
       </div>
     </div>
 
+    <!-- Earnings -->
     <div class="earnings-box">
       <div class="earning-card">
         <p>Today's Earnings</p>
@@ -27,18 +29,32 @@
       </div>
     </div>
 
+    <!-- Tasks -->
     <div class="tasks-box">
       <h3>Today's Tasks</h3>
       <p>Total Tasks: 50</p>
       <p>Completed: 0</p>
       <p>Remaining: 50</p>
-      <div class="progress-bar"></div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
     </div>
 
+    <!-- Start Earning Section -->
     <div class="start-earning">
       <h3>Start Earning</h3>
-      <button onclick="window.location.href='withdraw.html'">Withdraw</button>
+      <button id="startEarningBtn">Withdraw</button>
     </div>
   </div>
+
+  <!-- Monetag Ad Script (Replace with your link) -->
+  <script type="text/javascript">
+    function showAd() {
+      // Monetag SmartLink or popup code
+      window.open("https://your-monetag-ad-link.com", "_blank");
+    }
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
