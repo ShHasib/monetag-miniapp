@@ -18,3 +18,11 @@ function withdraw() {
     // চাইলে Firebase বা Google Sheet-এ সংযুক্ত করা যাবে
   }
 }
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+  if (ref) {
+    localStorage.setItem('referrer', ref);
+    document.getElementById('ref').innerText = "Referred by: " + ref;
+  }
+</script>
