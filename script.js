@@ -1,40 +1,52 @@
-// রেফারেল ট্র্যাক করা
-const params = new URLSearchParams(window.location.search);
-const ref = params.get("ref");
-if (ref) {
-  document.getElementById("refId").textContent = ref;
-  localStorage.setItem("ref_id", ref);
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-// র‍্যান্ডম পয়েন্ট (ডেমো)
-let points = Math.floor(Math.random() * 50 + 10);
-document.getElementById("points").textContent = points;
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
 
-// উইথড্র
-function withdraw() {
-  const number = prompt("📱 Enter your bKash/Nagad/Rocket number:");
-  if (number) {
-    alert("✅ Withdraw request submitted!\nNumber: " + number);
-    // চাইলে Firebase বা Google Sheet-এ সংযুক্ত করা যাবে
-  }
+.card {
+  background: #111;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 255, 100, 0.2);
 }
-// Referral System Code
-const urlParams = new URLSearchParams(window.location.search);
-const ref = urlParams.get('ref');
-if (ref) {
-  localStorage.setItem('referrer', ref);
-  document.getElementById('ref').innerText = "Referred by: " + ref;
+
+h1 {
+  font-size: 24px;
+  color: #00ff88;
 }
-function submitWithdraw() {
-  const phone = prompt("Enter your bKash/Nagad number:");
-  const ref = localStorage.getItem("referrer") || "None";
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
-    method: "POST",
-    body: JSON.stringify({
-      phone: phone,
-      points: localStorage.getItem("points") || 0,
-      referrer: ref
-    }),
-    headers: { "Content-Type": "application/json" }
-  }).then(() => alert("Withdraw request submitted ✅"));
+
+.main-img {
+  width: 100px;
+  margin: 20px 0;
 }
+
+button {
+  background: #00cc66;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00aa55;
+    }
