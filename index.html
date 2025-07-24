@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Earn by Ads</title>
-  <!-- 🔽 এই জায়গায় Script টা বসান -->
-  <script src='https://libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
-</head>
-<body>
-  <h2>🎯 Earn by Watching Ads</h2>
-  <button onclick="startAd()">👉 Start Earning</button>
+  <head>
+    <title>Earn By Ads</title>
+    <!-- ✅ Correct Monetag Popunder SDK Script -->
+    <script src="https://libtl.com/sdk.js" data-zone="9621423" data-sdk="show_9621423"></script>
+    <style>
+      body { text-align: center; padding-top: 100px; font-family: sans-serif; }
+      button { padding: 12px 24px; font-size: 18px; background: green; color: white; border: none; border-radius: 8px; }
+    </style>
+  </head>
+  <body>
+    <h2>🎯 Earn by Watching Ads</h2>
+    <button onclick="showAd()">👉 Start Earning</button>
+    <p id="status" style="margin-top: 20px;"></p>
 
-  <script>
-    function startAd() {
-      // অ্যাড trigger করার জন্য, user ক্লিক করলেই ad show হয়
-      // যদি SDK script autoload হয়, শুধু ক্লিক ই যথেষ্ট
-    }
-  </script>
-</body>
+    <script>
+      function showAd() {
+        document.getElementById("status").innerText = "🔄 Opening ad... Please allow popups!";
+        // This click will trigger Monetag SDK to show popup ad
+      }
+    </script>
+  </body>
 </html>
