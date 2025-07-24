@@ -1,55 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ADBD LAB (Online)</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Earn by Ads</title>
+  <!-- 🔽 এই জায়গায় Script টা বসান -->
+  <script src='//libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
 </head>
 <body>
-  <div class="container">
-    <!-- Profile -->
-    <div class="profile-box">
-      <img src="profile.jpg" alt="Profile" class="profile-img" />
-      <div>
-        <h2>ADBD LAB (Online)</h2>
-        <p>Balance: BDT 0.00</p>
-      </div>
-    </div>
+  <h2>🎯 Earn by Watching Ads</h2>
+  <button onclick="startAd()">👉 Start Earning</button>
 
-    <!-- Earnings -->
-    <div class="earnings-box">
-      <div class="earning-card">
-        <p>Today's Earnings</p>
-        <strong>BDT 0.00</strong>
-      </div>
-      <div class="earning-card">
-        <p>Lifetime Earnings</p>
-        <strong>BDT 0.00</strong>
-      </div>
-    </div>
-
-    <!-- Tasks -->
-    <div class="tasks-box">
-      <h3>Today's Tasks</h3>
-      <p>Total Tasks: 50</p>
-      <p>Completed: 0</p>
-      <p>Remaining: 50</p>
-      <div class="progress-bar-bg">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-    </div>
-
-    <!-- Start Earning Section -->
-    <div class="start-earning">
-      <h3>Start Earning</h3>
-      <button id="startEarningBtn">Withdraw</button>
-    </div>
-  </div>
-
-  <!-- Monetag Ad Script (Replace with your link) -->
-  <script src='//libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
-
-  <script src="script.js"></script>
+  <script>
+    function startAd() {
+      // অ্যাড trigger করার জন্য, user ক্লিক করলেই ad show হয়
+      // যদি SDK script autoload হয়, শুধু ক্লিক ই যথেষ্ট
+    }
+  </script>
 </body>
 </html>
