@@ -1,53 +1,40 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Monetag Ads Example</title>
+  <title>Monetag SDK Ad</title>
+  <script src="https://libtl.com/sdk.js" data-zone="9621423" data-sdk="show_9621423"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background: #f8f8f8;
     }
-    #showAdBtn {
-      padding: 10px 20px;
-      background: #007bff;
+    button {
+      padding: 12px 24px;
+      font-size: 20px;
+      background-color: #008000;
       color: white;
       border: none;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 5px;
-      margin-bottom: 20px;
+      border-radius: 10px;
     }
-    #adContainer {
-      display: none; /* প্রথমে লুকানো থাকবে */
+    #status {
       margin-top: 20px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-  <button id="showAdBtn">এড দেখাও</button>
-
-  <!-- Monetag Auto Ad -->
-  <script src='https://libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
-  <!-- ক্লিক করলে যে এড দেখাবে -->
-  <div id="adContainer">
-    <script src='https://libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
-  </div>
+  <h2>🚀 Earn by Ads</h2>
+  <button onclick="triggerAd()">👉 Start Earning</button>
+  <p id="status">Click the button to trigger ad.</p>
 
   <script>
-    const btn = document.getElementById('showAdBtn');
-    const adDiv = document.getElementById('adContainer');
-
-    btn.addEventListener('click', () => {
-      if (adDiv.style.display === 'none') {
-        adDiv.style.display = 'block';
-        btn.textContent = 'এড লুকাও';
-      } else {
-        adDiv.style.display = 'none';
-        btn.textContent = 'এড দেখাও';
-      }
-    });
+    function triggerAd() {
+      document.getElementById("status").innerText = "✅ Ad is loading... please allow popups.";
+      // Monetag SDK will auto-show the popup here
+    }
   </script>
 
 </body>
