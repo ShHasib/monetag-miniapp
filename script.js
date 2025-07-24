@@ -1,52 +1,20 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+// Referral handle
+const urlParams = new URLSearchParams(window.location.search);
+const ref = urlParams.get('ref');
+if (ref) {
+  localStorage.setItem('referrer', ref);
 }
+document.getElementById("ref").innerText = "Referral: " + (localStorage.getItem("referrer") || "None");
 
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+// Points system
+let points = localStorage.getItem("points") || 0;
+document.getElementById("points").innerText = points;
+
+function submitWithdraw() {
+  const phone = prompt("📲 Enter your bKash/Nagad number:");
+  const referrer = localStorage.getItem("referrer") || "None";
+
+  alert(`Withdraw Request Sent!\nPhone: ${phone}\nPoints: ${points}\nReferrer: ${referrer}`);
+
+  // Later: You can replace this with Google Sheets webhook or database logic
 }
-
-.card {
-  background: #111;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  max-width: 320px;
-  box-shadow: 0 10px 30px rgba(0, 255, 100, 0.2);
-}
-
-h1 {
-  font-size: 24px;
-  color: #00ff88;
-}
-
-.main-img {
-  width: 100px;
-  margin: 20px 0;
-}
-
-button {
-  background: #00cc66;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #00aa55;
-    }
