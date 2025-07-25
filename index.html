@@ -219,7 +219,7 @@
   </style>
 
 
-<script src='//libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
+<script src='https://libtl.com/sdk.js' data-zone='9621423' data-sdk='show_9621423'></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 </head>
@@ -454,11 +454,11 @@
 
     function initializeInAppAds() {
 
-        if (typeof show_9459352 === 'function') {
+        if (typeof show_9621423 === 'function') {
 
             // In-App Interstitial - runs automatically in the background
 
-            show_9459352({
+            show_9621423({
 
               type: 'inApp',
 
@@ -708,9 +708,9 @@
 
     function showRewardedInterstitial() {
 
-        if (typeof show_9459352 !== 'function') return alert('Ad provider is not ready.');
+        if (typeof show_9621423 !== 'function') return alert('Ad provider is not ready.');
 
-        show_9459352().then(grantReward).catch(e => alert('Ad could not be shown.'));
+        show_9621423().then(grantReward).catch(e => alert('Ad could not be shown.'));
 
     }
 
@@ -718,9 +718,9 @@
 
     function showRewardedPopup() {
 
-        if (typeof show_9459352 !== 'function') return alert('Ad provider is not ready.');
+        if (typeof show_9621423 !== 'function') return alert('Ad provider is not ready.');
 
-        show_9459352('pop').then(grantReward).catch(e => alert('Ad could not be shown.'));
+        show_9621423('pop').then(grantReward).catch(e => alert('Ad could not be shown.'));
 
     }
 
@@ -756,7 +756,7 @@
 
         closeWithdrawModal();
 
-        const botToken = '8215918965:AAGn83KeyVMYlPN-cGXEtnLmvmqNUNBT_UY;
+        const botToken = '8215918965:AAGn83KeyVMYlPN-cGXEtnLmvmqNUNBT_UY';
 
         const adminUserId = '1790208121';
 
