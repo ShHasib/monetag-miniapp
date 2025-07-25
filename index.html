@@ -3,6 +3,22 @@
 <html lang="en">
 
 <head>
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+    projectId: "YOUR_PROJECT",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "1790208121",
+    appId: "XXXXXXX"
+  };
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+</script>
 
   <meta charset="UTF-8" />
 
@@ -682,7 +698,27 @@
 
     }
 
+<!-- ইউজার হোম পেজ থাকবে -->
+<div id="home-page" style="display: block;">
+  <!-- ইউজারের ব্যালেন্স, Start Earning button ইত্যাদি -->
+</div>
 
+<!-- ✅ Admin Panel DIV -->
+<div id="admin-panel" style="display: none;">
+  <h2>👑 Admin Panel</h2>
+
+  <!-- ইউজার পয়েন্ট সেট -->
+  <input type="number" id="pointPerView" placeholder="Points per Ad View" />
+  <button onclick="updatePointSetting()">Save</button>
+
+  <!-- উইথড্রো রিকুয়েস্ট লিস্ট -->
+  <h3>Withdraw Requests</h3>
+  <ul id="withdrawList"></ul>
+
+  <!-- ইউজার লিস্ট -->
+  <h3>All Users</h3>
+  <ul id="userList"></ul>
+</div>
 
     // --- Earning Functions ---
 
@@ -826,7 +862,56 @@
 
 </script>
 
+<script>
+// ইউজার আইডি ডিটেক্ট
+const urlParams = new URLSearchParams(window.location.search);
+const uid = urlParams.get("ref") || urlParams.get("admin") || "unknown";
 
+// ব্যালেন্স লোড
+function loadBalance() {
+  db.ref("users/" + uid + "/balance").once("value").then((snap) => {
+    document.getElementById("balance").innerText = snap.val() || 0;
+  });
+}
+
+// অ্যাড ভিউ করলে পয়েন্ট অ্যাড
+function earnPoint() {
+  db.ref("users/" + uid + "/balance").transaction((current) => (current || 0) + 1);
+  loadBalance();
+}
+
+// Withdraw ফর্ম সাবমিট
+function submitWithdraw() {
+  const amount = document.getElementById("amount").value;
+  const method = document.getElementById("method").value;
+  const number = document.getElementById("number").value;
+  db.ref("withdraw_requests").push({
+    uid, amount, method, number, status: "pending"
+  });
+  alert("Withdraw request submitted");
+}
+
+// যদি admin হলে admin panel দেখাও
+if (urlParams.get("admin") === "1790208121") {
+  document.getElementById("adminPanel").style.display = "block";
+  // pending withdraw গুলো দেখাও
+  db.ref("withdraw_requests").once("value").then((snap) => {
+    snap.forEach((child) => {
+      const data = child.val();
+      const div = document.createElement("div");
+      div.innerHTML = `UID: ${data.uid}, Amount: ${data.amount}, Method: ${data.method} (${data.number}) <button onclick="approve('${child.key}')">Approve</button>`;
+      document.getElementById("withdrawList").appendChild(div);
+    });
+  });
+}
+
+function approve(key) {
+  db.ref("withdraw_requests/" + key + "/status").set("approved");
+  alert("Approved");
+}
+
+loadBalance();
+</script>
 
 </body>
 
