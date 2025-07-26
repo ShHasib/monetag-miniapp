@@ -404,7 +404,7 @@
 
     const pointsPerAd = 1;
 
-    const ratePerPoint = 0.05;
+    const ratePerPoint = 1.05;
 
 
 
@@ -730,7 +730,7 @@
 
     function openWithdrawModal() {
 
-        if (balance < 5) {
+        if (balance < 2) {
 
             Telegram.WebApp.HapticFeedback.notificationOccurred('error');
 
