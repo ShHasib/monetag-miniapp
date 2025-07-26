@@ -670,57 +670,7 @@
     
 
 
-    function requestWithdraw() {
-
-        closeWithdrawModal();
-
-        const botToken = '8215918965:AAGn83KeyVMYlPN-cGXEtnLmvmqNUNBT_UY';
-
-        const adminUserId = '1790208121';
-
-        const userInfo = tgUser ? `@${tgUser.username} (ID: ${tgUser.id})` : 'Unknown User';
-
-        const message = `💸 *Withdrawal Request*\n\n👤 *User:* ${userInfo}\n💰 *Amount:* $${balance.toFixed(2)}\n\n_Please process this request._`;
-
-
-
-        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-
-            method: "POST",
-
-            headers: { 'Content-Type': 'application/json' },
-
-            body: JSON.stringify({ chat_id: adminUserId, text: message, parse_mode: "Markdown" })
-
-        }).then(res => res.json())
-
-        .then(data => {
-
-            if (data.ok) {
-
-                Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-
-                alert("Your withdrawal request has been sent successfully!");
-
-                addToHistory('withdraw', `Request for $${balance.toFixed(2)}`);
-
-            } else {
-
-                Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-
-                alert("Failed to send request. Please try again later.");
-
-            }
-
-        }).catch(err => {
-
-            Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-
-            alert("An error occurred. Check your connection and try again.");
-
-        });
-
-    }
+    
 
 
 
