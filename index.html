@@ -352,7 +352,7 @@
 
       <button class="nav-button" onclick="showView('tasks-view')"><i class="icon fa-solid fa-list-check"></i>Tasks</button>
 
-      <button class="nav-button" onclick="showView('leaderboard-view')"><i class="icon fa-solid fa-trophy"></i>Leaders</button>
+      <button class="nav-button" onclick="showView('leaderboard-view')"><i class="icon fa-solid fa-trophy"></i>Withdraw</button>
 
       <button class="nav-button" onclick="showView('history-view')"><i class="icon fa-solid fa-clock-rotate-left"></i>History</button>
 
@@ -403,7 +403,7 @@
 
     const pointsPerAd = 1;
 
-    const ratePerPoint = 1.05;
+    const ratePerPoint = 0.05;
 
 
 
@@ -729,11 +729,11 @@
 
     function openWithdrawModal() {
 
-        if (balance < 2) {
+        if (balance < 3) {
 
             Telegram.WebApp.HapticFeedback.notificationOccurred('error');
 
-            return alert("Minimum withdrawal amount is $2.00. Keep earning!");
+            return alert("Minimum withdrawal amount is $3.00. Keep earning!");
 
         }
 
