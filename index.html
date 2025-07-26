@@ -667,28 +667,7 @@
 
     // --- Withdrawal Logic ---
 
-    function openWithdrawModal() {
-
-        if (balance < 3) {
-
-            Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-
-            return alert("Minimum withdrawal amount is $3.00. Keep earning!");
-
-        }
-
-        document.getElementById('withdraw-modal').classList.add('active');
-
-    }
-
     
-
-    function closeWithdrawModal() {
-
-        document.getElementById('withdraw-modal').classList.remove('active');
-
-    }
-
 
 
     function requestWithdraw() {
