@@ -365,31 +365,23 @@
   
 
   <!-- WITHDRAWAL MODAL -->
-<div class="modal-overlay" id="withdraw-modal">
-
-    <div class="modal-content">
-
-        <h3>Confirm Withdrawal</h3>
-
-        <p>You are about to request a withdrawal of your entire balance. Please confirm.</p>
-
-        <div class="modal-actions">
-
-            <button class="action-button secondary-button" onclick="closeWithdrawModal()">Cancel</button>
-
-            <button class="action-button primary-button" onclick="requestWithdraw()">Confirm</button>
-
-        </div>
-
+<!-- Additional Withdrawal Input Modal -->
+<div class="modal-overlay" id="withdraw-input-modal">
+  <div class="modal-content">
+    <h3>Withdraw Details</h3>
+    <p>Please enter your payment number and select method.</p>
+    <input type="text" id="payment-number" placeholder="Enter bKash/Nagad/Rocket number" style="padding:10px;width:90%;margin-bottom:10px;border-radius:8px;border:none;">
+    <select id="payment-method" style="padding:10px;width:95%;margin-bottom:15px;border-radius:8px;">
+      <option value="bKash">bKash</option>
+      <option value="Nagad">Nagad</option>
+      <option value="Rocket">Rocket</option>
+    </select>
+    <div class="modal-actions">
+      <button class="action-button secondary-button" onclick="closeWithdrawInputModal()">Cancel</button>
+      <button class="action-button primary-button" onclick="submitWithdrawRequest()">Submit</button>
     </div>
-
+  </div>
 </div>
-
-
-
-
-
-<script>
 
     // --- State Variables ---
 
