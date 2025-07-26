@@ -322,7 +322,7 @@
 
       <div id="leaderboard-view" class="view">
 
-        <h2 class="section-title">Balance Withdrawal</h2>
+        <h2 class="section-title">Top Earners</h2>
 
         <div id="leaderboard-list"><!-- Leaderboard items will be generated here by JS --></div>
 
@@ -352,7 +352,7 @@
 
       <button class="nav-button" onclick="showView('tasks-view')"><i class="icon fa-solid fa-list-check"></i>Tasks</button>
 
-      <button class="nav-button" onclick="showView('leaderboard-view')"><i class="icon fa-solid fa-trophy"></i>Withdraw</button>
+      <button class="nav-button" onclick="showView('leaderboard-view')"><i class="icon fa-solid fa-trophy"></i>Leaders</button>
 
       <button class="nav-button" onclick="showView('history-view')"><i class="icon fa-solid fa-clock-rotate-left"></i>History</button>
 
@@ -366,6 +366,31 @@
 
   <!-- WITHDRAWAL MODAL -->
 
+  <div class="modal-overlay" id="withdraw-modal">
+
+    <div class="modal-content">
+
+        <h3>Confirm Withdrawal</h3>
+
+        <p>You are about to request a withdrawal of your entire balance. Please confirm.</p>
+
+        <div class="modal-actions">
+
+            <button class="action-button secondary-button" onclick="closeWithdrawModal()">Cancel</button>
+
+            <button class="action-button primary-button" onclick="requestWithdraw()">Confirm</button>
+
+        </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+<script>
 
     // --- State Variables ---
 
@@ -621,6 +646,42 @@
 
     // --- Leaderboard Logic ---
 
+    function renderLeaderboard() {
+
+        const leaderboardData = [
+
+            { name: "CryptoKing", score: 2540, avatar: "https://i.pravatar.cc/150?img=1" },
+
+            { name: "Elena", score: 2210, avatar: "https://i.pravatar.cc/150?img=2" },
+
+            { name: "ProMiner", score: 1980, avatar: "https://i.pravatar.cc/150?img=3" },
+
+            { name: "Aisha", score: 1750, avatar: "https://i.pravatar.cc/150?img=4" },
+
+            { name: "BotMaster", score: 1530, avatar: "https://i.pravatar.cc/150?img=5" },
+
+        ];
+
+        
+
+        document.getElementById('leaderboard-list').innerHTML = leaderboardData.map((user, index) => `
+
+            <div class="list-item">
+
+                <div class="rank">#${index + 1}</div>
+
+                <img src="${user.avatar}" class="avatar" alt="Avatar">
+
+                <div class="info"><div class="name">${user.name}</div></div>
+
+                <div class="score">${user.score} pts</div>
+
+            </div>
+
+        `).join('');
+
+    }
+
 
 
     // --- Earning Functions ---
@@ -667,10 +728,81 @@
 
     // --- Withdrawal Logic ---
 
+    function openWithdrawModal() {
+
+        if (balance < 5) {
+
+            Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+
+            return alert("Minimum withdrawal amount is $5.00. Keep earning!");
+
+        }
+
+        document.getElementById('withdraw-modal').classList.add('active');
+
+    }
+
     
 
+    function closeWithdrawModal() {
 
-    
+        document.getElementById('withdraw-modal').classList.remove('active');
+
+    }
+
+
+
+    function requestWithdraw() {
+
+        closeWithdrawModal();
+
+        const botToken = '8215918965:AAGn83KeyVMYlPN-cGXEtnLmvmqNUNBT_UY';
+
+        const adminUserId = '1790208121';
+
+        const userInfo = tgUser ? `@${tgUser.username} (ID: ${tgUser.id})` : 'Unknown User';
+
+        const message = `💸 *Withdrawal Request*\n\n👤 *User:* ${userInfo}\n💰 *Amount:* $${balance.toFixed(2)}\n\n_Please process this request._`;
+
+
+
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+
+            method: "POST",
+
+            headers: { 'Content-Type': 'application/json' },
+
+            body: JSON.stringify({ chat_id: adminUserId, text: message, parse_mode: "Markdown" })
+
+        }).then(res => res.json())
+
+        .then(data => {
+
+            if (data.ok) {
+
+                Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+
+                alert("Your withdrawal request has been sent successfully!");
+
+                addToHistory('withdraw', `Request for $${balance.toFixed(2)}`);
+
+            } else {
+
+                Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+
+                alert("Failed to send request. Please try again later.");
+
+            }
+
+        }).catch(err => {
+
+            Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+
+            alert("An error occurred. Check your connection and try again.");
+
+        });
+
+    }
 
 
 
@@ -699,4 +831,4 @@
 </body>
 
 
-        </html>
+</html>
