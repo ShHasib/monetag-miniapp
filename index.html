@@ -254,7 +254,7 @@
 
             <p class="label">Total Balance</p>
 
-            <h1 class="balance-value" id="balance-value">$0.00</h1>
+            <h1 class="balance-value" id="balance-value">৳0.00</h1>
 
             <p class="points-value"><i class="fa-solid fa-coins"></i> <span id="points-value">0</span> Points</p>
 
@@ -730,11 +730,11 @@
 
     function openWithdrawModal() {
 
-        if (balance < 5) {
+        if (balance < 200) {
 
             Telegram.WebApp.HapticFeedback.notificationOccurred('error');
 
-            return alert("Minimum withdrawal amount is $5.00. Keep earning!");
+            return alert("Minimum withdrawal amount is ৳200.00. Keep earning!");
 
         }
 
@@ -812,7 +812,7 @@
 
         if (!tgUser) return alert("Could not get user data from Telegram.");
 
-        const botUsername = "@monetagearning_official_bot";
+        const botUsername = "monetagearning_official_bot";
 
         const referralLink = `https://t.me/${botUsername}?start=${tgUser.id}`;
 
