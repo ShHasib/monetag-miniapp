@@ -254,7 +254,7 @@
 
             <p class="label">Total Balance</p>
 
-            <h1 class="balance-value" id="balance-value">৳0.00</h1>
+            <h1 class="balance-value" id="balance-value">$0.00</h1>
 
             <p class="points-value"><i class="fa-solid fa-coins"></i> <span id="points-value">0</span> Points</p>
 
@@ -404,7 +404,7 @@
 
     const pointsPerAd = 1;
 
-    const ratePerPoint = 0.40;
+    const ratePerPoint = 0.22;
 
 
 
@@ -700,7 +700,7 @@
 
         Telegram.WebApp.HapticFeedback.notificationOccurred('success');
 
-        alert(`Congratulations! You've earned +৳{pointsPerAd} point. Your new balance is $${balance.toFixed(2)}.`);
+        alert(`Congratulations! You've earned +${pointsPerAd} point. Your new balance is $${balance.toFixed(2)}.`);
 
     }
 
