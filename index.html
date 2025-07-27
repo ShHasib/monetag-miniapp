@@ -694,13 +694,13 @@
 
         updateDisplay();
 
-        addToHistory('earn', `+৳{pointsPerAd} Point(s) from Ad`);
+        addToHistory('earn', `+${pointsPerAd} Point(s) from Ad`);
 
         saveData();
 
         Telegram.WebApp.HapticFeedback.notificationOccurred('success');
 
-        alert(`Congratulations! You've earned +৳{pointsPerAd} point. Your new balance is $৳{balance.toFixed(2)}.`);
+        alert(`Congratulations! You've earned +৳{pointsPerAd} point. Your new balance is $${balance.toFixed(2)}.`);
 
     }
 
