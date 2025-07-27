@@ -404,7 +404,7 @@
 
     const pointsPerAd = 1;
 
-    const ratePerPoint = 0.05;
+    const ratePerPoint = 0.40;
 
 
 
@@ -552,7 +552,7 @@
 
         document.getElementById('points-value').textContent = points;
 
-        document.getElementById('balance-value').textContent = `$${balance.toFixed(2)}`;
+        document.getElementById('balance-value').textContent = `$৳{balance.toFixed(2)}`;
 
     }
 
@@ -694,13 +694,13 @@
 
         updateDisplay();
 
-        addToHistory('earn', `+${pointsPerAd} Point(s) from Ad`);
+        addToHistory('earn', `+৳{pointsPerAd} Point(s) from Ad`);
 
         saveData();
 
         Telegram.WebApp.HapticFeedback.notificationOccurred('success');
 
-        alert(`Congratulations! You've earned +${pointsPerAd} point. Your new balance is $${balance.toFixed(2)}.`);
+        alert(`Congratulations! You've earned +৳{pointsPerAd} point. Your new balance is $৳{balance.toFixed(2)}.`);
 
     }
 
