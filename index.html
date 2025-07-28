@@ -404,7 +404,7 @@
 
     const pointsPerAd = 1;
 
-    const ratePerPoint = 0.22;
+    const ratePerPoint = 0.005;
 
 
 
@@ -730,11 +730,11 @@
 
     function openWithdrawModal() {
 
-        if (balance < 200) {
+        if (balance < 2) {
 
             Telegram.WebApp.HapticFeedback.notificationOccurred('error');
 
-            return alert("Minimum withdrawal amount is ৳200.00. Keep earning!");
+            return alert("Minimum withdrawal amount is $2.00. Keep earning!");
 
         }
 
