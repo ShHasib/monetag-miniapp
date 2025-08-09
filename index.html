@@ -1,248 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Telegram Bot UI</title>
 <style>
-  body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f7f9fc;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f7f9fc;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
 
-  /* Header */
-  .header {
-    background: #ff7f6b;
-    color: white;
-    padding: 20px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  .profile-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #4a90e2, #6ab6ff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 18px;
-    overflow: hidden;
-  }
-  .profile-icon img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .header-text {
-    line-height: 1.2;
-  }
-  .header-text h3 {
-    margin: 0;
-    font-size: 18px;
-  }
-  .header-text span {
-    font-size: 14px;
-  }
+    /* Header */
+    .header {
+        background: #ff7f6b;
+        color: white;
+        padding: 20px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .profile-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #4a90e2, #6ab6ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+        overflow: hidden;
+    }
+    .profile-icon img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .header-text {
+        line-height: 1.2;
+    }
+    .header-text h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+    .header-text span {
+        font-size: 14px;
+    }
 
-  /* Welcome Section */
-  .welcome-card {
-    background: white;
-    margin: 15px;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  }
-  .welcome-card h4 {
-    margin: 5px 0;
-    font-size: 16px;
-  }
-  .welcome-card p {
-    margin: 0;
-    color: gray;
-    font-size: 13px;
-  }
-  .earn-btn {
-    background: #ff7f6b;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    border: none;
-    margin: 15px 0;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .welcome-card img {
-    max-width: 80px;
-    margin-top: 10px;
-  }
+    /* Welcome Section */
+    .welcome-card {
+        background: white;
+        margin: 15px;
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .welcome-card h4 {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+    .welcome-card p {
+        margin: 0;
+        color: gray;
+        font-size: 13px;
+    }
+    .earn-btn {
+        background: #ff7f6b;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        border: none;
+        margin: 15px 0;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    .welcome-card img {
+        max-width: 80px;
+        margin-top: 10px;
+    }
 
-  /* Card Styles */
-  .info-card {
-    background: #ff7f6b;
-    color: white;
-    margin: 15px;
-    border-radius: 15px;
-    padding: 20px;
-    position: relative;
-  }
-  .info-card h3 {
-    margin: 0;
-    font-size: 20px;
-  }
-  .info-card p {
-    font-size: 13px;
-    margin-top: 5px;
-    opacity: 0.9;
-  }
+    /* Card Styles */
+    .info-card {
+        background: #ff7f6b;
+        color: white;
+        margin: 15px;
+        border-radius: 15px;
+        padding: 20px;
+        position: relative;
+    }
+    .info-card h3 {
+        margin: 0;
+        font-size: 20px;
+    }
+    .info-card p {
+        font-size: 13px;
+        margin-top: 5px;
+        opacity: 0.9;
+    }
 
-  /* Favourite Button */
-  .fav-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-    cursor: pointer;
-  }
+    /* Favourite Button */
+    .fav-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(255,255,255,0.2);
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        cursor: pointer;
+    }
 
-  /* Bottom Navigation */
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(45deg, #d6246e, #f77062);
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-  }
-  .bottom-nav a {
-    color: white;
-    text-align: center;
-    font-size: 12px;
-    text-decoration: none;
-  }
-  .bottom-nav i {
-    display: block;
-    font-size: 18px;
-    margin-bottom: 3px;
-  }
+    /* Bottom Navigation */
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(45deg, #d6246e, #f77062);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .bottom-nav a {
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        text-decoration: none;
+    }
+    .bottom-nav i {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 3px;
+    }
 
-  /* Extra space for scroll */
-  .bottom-space {
-    height: 70px;
-  }
+    /* Extra space for scroll */
+    .bottom-space {
+        height: 70px;
+    }
 </style>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <!-- Header -->
-  <div class="header">
-    <div class="profile-icon" id="profile-pic">DH</div>
+
+<!-- Header -->
+<div class="header">
+    <div class="user-avatar" id="profile-pic">DH</div>
     <div class="header-text">
-      <h3 id="username">Developer Hasib</h3>
-      <span id="balance">82.39 VET</span>
+        <h2 class="username" id="username">Loading...</h2>
+        <span id="balance">82.39 VET</span>
     </div>
-  </div>
+</div>
 
-  <!-- Welcome Section -->
-  <div class="welcome-card">
-    <h4 id="welcome-text">Welcome Developer Hasib</h4>
+<!-- Welcome Section -->
+<div class="welcome-card">
+    <h4 id="username">Welcome Developer Hasib</h4>
     <p>Start Earning Money Now</p>
-    <img
-      src="https://i.ibb.co/XJWf8WD/businessman.png"
-      alt="Businessman"
-    />
-    <br />
+    <img src="https://i.ibb.co/XJWf8WD/businessman.png" alt="Businessman">
+    <br>
     <button class="earn-btn">Earn Now</button>
-  </div>
+</div>
 
-  <!-- Total Earnings Card -->
-  <div class="info-card">
+<!-- Total Earnings Card -->
+<div class="info-card">
     <h3>$ 80 VET</h3>
     <p>Total Earnings</p>
     <div class="fav-btn">
-      <i class="fa fa-heart"></i>
-      <span>Earning Received</span>
+        <i class="fa fa-heart"></i>
+        <span>Earning Received</span>
     </div>
-  </div>
+</div>
 
-  <!-- Total Ads View Card -->
-  <div class="info-card">
+<!-- Total Ads View Card -->
+<div class="info-card">
     <h3>20</h3>
     <p>Total Ads View</p>
-  </div>
+</div>
 
-  <!-- Extra space for bottom nav -->
-  <div class="bottom-space"></div>
+<!-- Extra space for bottom nav -->
+<div class="bottom-space"></div>
 
-  <!-- Bottom Navigation -->
-  <div class="bottom-nav">
+<!-- Bottom Navigation -->
+<div class="bottom-nav">
     <a href="#"><i class="fa fa-home"></i>Home</a>
     <a href="#"><i class="fa fa-money-bill"></i>Earn</a>
     <a href="#"><i class="fa fa-wallet"></i>Withdraw</a>
     <a href="#"><i class="fa fa-user"></i>Profile</a>
-  </div>
+</div>
+    
+    <script>
+    
+       // --- Core App Logic ---
 
-  <script>
-    // Telegram WebApp object
-    const tg = window.Telegram?.WebApp;
+    document.addEventListener('DOMContentLoaded', () => {
 
-    // ইউজারের তথ্য নেওয়ার ফাংশন
-    function loadTelegramUser() {
-      if (!tg) {
-        console.warn('Telegram WebApp API not found!');
-        return;
-      }
-      const tgUser = tg.initDataUnsafe?.user || null;
+        initApp();
 
-      if (tgUser) {
-        document.getElementById('username').textContent =
-          tgUser.first_name || 'Telegram User';
-        document.getElementById('welcome-text').textContent = `Welcome ${
-          tgUser.first_name || 'Telegram User'
-        }`;
-        // যদি তোমার API থেকে বা অন্য কোথাও থেকে ব্যালেন্স পাও তাহলে সেট করো, না থাকলে ডিফল্ট
-        document.getElementById('balance').textContent = '82.39 VET';
+    });
 
-        const profilePicDiv = document.getElementById('profile-pic');
-        if (tgUser.photo_url) {
-          profilePicDiv.innerHTML = `<img src="${tgUser.photo_url}" alt="P" />`;
-        } else {
-          profilePicDiv.textContent = (tgUser.first_name || 'U').charAt(0);
+
+
+    function initApp() {
+
+        if (window.Telegram && Telegram.WebApp) {
+
+            Telegram.WebApp.ready();
+
+            Telegram.WebApp.expand();
+
+            tgUser = Telegram.WebApp.initDataUnsafe.user;
+
         }
-      } else {
-        // ইউজার ডেটা না থাকলে ডিফল্ট দেখাবে
-        document.getElementById('username').textContent = 'Telegram User';
-        document.getElementById('welcome-text').textContent = 'Welcome Telegram User';
-        document.getElementById('balance').textContent = '82.39 VET';
-        document.getElementById('profile-pic').textContent = 'U';
-      }
-    }
 
-    // DOM লোড হলে কল করো
-    document.addEventListener('DOMContentLoaded', loadTelegramUser);
-  </script>
+        
+
+        loadData();
+
+        loadTelegramUser();
+
+        showView('home-view');
+
+        renderLeaderboard();
+
+        
+
+
+    // --- User & Profile ---
+
+    function loadTelegramUser() {
+
+        if (tgUser) {
+
+            document.getElementById('username').textContent = tgUser.first_name || 'Telegram User';
+
+            const profilePicDiv = document.getElementById('profile-pic');
+
+            if (tgUser.photo_url) {
+
+                profilePicDiv.innerHTML = `<img src="${tgUser.photo_url}" alt="P">`;
+
+            } else {
+
+                profilePicDiv.textContent = (tgUser.first_name || 'U').charAt(0);
+
+            }
+
+        }
+
+    }
+</script>
 </body>
 </html>
