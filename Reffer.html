@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Referral</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6fbff;
+      --green:#26c281;
+      --green-dark:#1fb072;
+      --card:#ffffff;
+      --muted:#90a0ad;
+      --accent:#0ea5a3;
+      --shadow: 0 10px 20px rgba(16,24,40,0.07);
+    }
+    *{box-sizing:border-box}
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg,#f6fbff 0%, #f3f9ff 100%);
+      font-family: "Inter", sans-serif;
+      padding-bottom: 90px;
+    }
+    .phone {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+    /* Topbar */
+    .topbar {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background: linear-gradient(90deg, var(--green), #30d29d);
+      padding:16px;
+      border-radius:0 0 12px 12px;
+      box-shadow: var(--shadow);
+      color:#fff;
+    }
+    .avatar{
+      width:48px;height:48px;border-radius:50%;
+      background: rgba(255,255,255,0.12);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#fff;font-size:16px;
+    }
+    .user-info{flex:1}
+    .user-info .name{font-weight:700; font-size:16px}
+    .user-info .balance{font-size:13px;opacity:0.95;margin-top:2px}
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-top: 16px;
+    }
+    .card-title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .stats {
+      display: flex;
+      gap: 12px;
+    }
+    .stat {
+      flex: 1;
+      background: var(--card);
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .stat-title {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Referral Link Box */
+    .referral-link {
+      display: flex;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 8px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+    .copy-btn {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Share Buttons */
+    .share-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .share-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .tg {background:#29a9ea;}
+    .wa {background:#25d366;}
+    .fb {background:#1877f2;}
+    .more {background:#888;}
+
+    /* How It Works */
+    .how-works {
+      margin-top: 16px;
+    }
+    .how-step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .step-text {
+      flex: 1;
+      font-size: 14px;
+    }
+    .step-text strong {display:block;}
+
+    /* Bottom nav */
+    .bottom-nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:18px;
+      width:92%;
+      max-width:380px;
+      background:linear-gradient(90deg,var(--green),#2fcf9a);
+      border-radius:14px;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      padding:12px 10px;
+      box-shadow: 0 12px 30px rgba(38,194,129,0.14);
+      color:#fff;
+    }
+    .nav-item{display:flex;flex-direction:column;align-items:center;font-size:12px;text-decoration:none;color:#fff;opacity:0.95}
+    .nav-item svg{width:20px;height:20px;margin-bottom:4px;opacity:0.95}
+  
+  .refer-btn {
+  position: fixed;
+  bottom: 95px; /* bottom nav এর উপরে */
+  right: 16px; /* ডান পাশে */
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 1000;
+  border: none;
+  width: auto; /* ফুল-উইডথ ঠেকাতে */
+}
+.refer-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+  
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="avatar">DH</div>
+      <div class="user-info">
+        <div class="name">Developer Hasib</div>
+        <div class="balance">201.63 VET</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats" style="margin-top:16px;">
+      <div class="stat">
+        <div class="stat-title">Total Referrals</div>
+        <div class="stat-value">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Referral Earnings</div>
+        <div class="stat-value">0.00</div>
+      </div>
+    </div>
+
+    <!-- Referral Link -->
+    <div class="card">
+      <div class="card-title">Your Referral Link</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Earn 20% of your friends' earnings when they join!</p>
+      <div class="referral-link">
+        <span>https://t.me/DragoEvolution2...</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <div class="share-buttons">
+        <div class="share-btn tg">Telegram</div>
+        <div class="share-btn wa">WhatsApp</div>
+        <div class="share-btn fb">Facebook</div>
+        <div class="share-btn more">More</div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="card how-works">
+      <div class="card-title">How It Works</div>
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Share Your Link</strong> Share your unique referral link with friends</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>They Sign Up</strong> Your friends sign up using your link</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>You Earn</strong> Earn 20% of their mining and task rewards</div>
+      </div>
+    </div>
+
+    <!-- Referral History -->
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="card-title" style="margin:0;">Referral History</div>
+      <a href="#" style="font-size:13px;color:var(--accent);text-decoration:none;">View All</a>
+    </div>
+    
+    
+<!-- Refer Button -->
+<button class="refer-btn" onclick="window.location.href='Reffer.html'">
+  <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V20h6v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+  Refer & Earn
+</button>
+    <!-- Bottom nav -->
+    <nav class="bottom-nav">
+      <a class="nav-item" href="Home.html">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 10L12 3l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Home
+      </a>
+      <a class="nav-item" href="Earn.html">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/><path d="M5 12h14" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Earn
+      </a>
+      <a class="nav-item" href="Withdraw.html">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5-5 5 5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Withdraw
+      </a>
+      <a class="nav-item" href="Profile.html">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="#fff" stroke-width="1.4"/><path d="M6 20c1.5-4 10.5-4 12 0" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Profile
+      </a>
+    </nav>
+  </div>
+</body>
+</html>

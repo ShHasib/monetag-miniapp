@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Withdraw Funds</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6fbff;
+  --green:#26c281;
+  --green-dark:#1fb072;
+  --card:#ffffff;
+  --muted:#90a0ad;
+  --accent:#0ea5a3;
+  --shadow: 0 10px 20px rgba(16,24,40,0.07);
+  --error:#e74c3c;
+}
+*{box-sizing:border-box}
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+body{
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#f6fbff 0%, #f3f9ff 100%);
+  color: #0b1b2b;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding: 0;
+  display: block;
+}
+.phone {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding-bottom: 140px; /* Bottom nav এর জন্য জায়গা */
+}
+/* Topbar */
+.topbar {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background: linear-gradient(90deg, var(--green), #30d29d);
+  padding:16px;
+  margin:0 12px;
+  border-radius:0 0 12px 12px;
+  box-shadow: var(--shadow);
+  color:#fff;
+}
+.avatar{
+  width:48px;height:48px;border-radius:50%;
+  background: rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#fff;font-size:16px;
+  box-shadow: inset 0 -4px 8px rgba(255,255,255,0.03);
+}
+.user-info{flex:1}
+.user-info .name{font-weight:700; font-size:16px}
+.user-info .balance{font-size:13px;opacity:0.95;margin-top:2px}
+/* Card */
+.card{
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px;
+  box-shadow: var(--shadow);
+}
+.card h2{
+  text-align:center;
+  color:var(--green);
+  margin-bottom:10px;
+}
+.card p{
+  text-align:center;
+  margin-bottom:16px;
+  color:#333;
+}
+.form-group{
+  margin-bottom:12px;
+}
+label{
+  display:block;
+  font-weight:600;
+  margin-bottom:6px;
+}
+input, select{
+  width:100%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:14px;
+}
+button{
+  width:100%;
+  background: var(--green);
+  color:#fff;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{
+  background: var(--green-dark);
+}
+/* Toast */
+.toast{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background: var(--green);
+  color:#fff;
+  padding:14px 18px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow: var(--shadow);
+  font-size:15px;
+  font-weight:600;
+  min-width:280px;
+  z-index:9999;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.3s ease, top 0.3s ease;
+}
+.toast.show{
+  opacity:1;
+  pointer-events:auto;
+  top:40px;
+}
+.toast svg{
+  width:20px;
+  height:20px;
+  flex-shrink:0;
+}
+/* Bottom nav */
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:18px;
+  width:92%;
+  max-width:380px;
+  background:linear-gradient(90deg,var(--green),#2fcf9a);
+  border-radius:14px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  padding:12px 10px;
+  box-shadow: 0 12px 30px rgba(38,194,129,0.14);
+  color:#fff;
+}
+.nav-item{display:flex;flex-direction:column;align-items:center;font-size:12px;text-decoration:none;color:#fff;opacity:0.95}
+.nav-item svg{width:20px;height:20px;margin-bottom:4px;opacity:0.95}
+
+  .refer-btn {
+  position: fixed;
+  bottom: 95px; /* bottom nav এর উপরে */
+  right: 16px; /* ডান পাশে */
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 1000;
+  border: none;
+  width: auto; /* ফুল-উইডথ ঠেকাতে */
+}
+.refer-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+  
+@media (min-width:420px){
+  .phone{width:400px}
+}
+</style>
+</head>
+<body>
+<div class="phone">
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span id="toastMsg">Withdraw Successful!</span>
+  </div>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="avatar">DH</div>
+    <div class="user-info">
+      <div class="name">Developer Hasib</div>
+      <div class="balance">123.23 VET</div>
+    </div>
+  </div>
+  <!-- Withdraw Card -->
+  <div class="card">
+    <h2>Withdraw Funds</h2>
+    <p>Available Balance: <span style="color:var(--green);font-weight:bold;">123.23 VET</span></p>
+    <form id="withdrawForm">
+      <div class="form-group">
+        <label>Withdrawal Method</label>
+        <select id="method">
+          <option value="">Select a method</option>
+          <option value="binance">Binance</option>
+          <option value="paypal">PayPal</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Amount</label>
+        <input type="number" id="amount" placeholder="Enter amount" min="100">
+      </div>
+      <div class="form-group">
+        <label>Binance ID</label>
+        <input type="text" id="binanceId" placeholder="Enter Binance ID">
+      </div>
+      <button type="submit">Submit Withdrawal ➜</button>
+    </form>
+  </div>
+</div>
+
+<!-- Refer Button -->
+<button class="refer-btn" onclick="window.location.href='Referral.html'">
+  <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V20h6v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+  Refer & Earn
+</button>
+
+<!-- Bottom Nav -->
+<nav class="bottom-nav">
+  <a class="nav-item" href="Home.html">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M3 10L12 3l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Home
+  </a>
+  <a class="nav-item" href="Earn.html">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/><path d="M5 12h14" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+    Earn
+  </a>
+  <a class="nav-item" href="Withdraw.html">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5-5 5 5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Withdraw
+  </a>
+  <a class="nav-item" href="Profile.html">
+    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="#fff" stroke-width="1.4"/><path d="M6 20c1.5-4 10.5-4 12 0" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Profile
+  </a>
+</nav>
+<script>
+function showToast(message, type="success"){
+  const toast = document.getElementById("toast");
+  const toastMsg = document.getElementById("toastMsg");
+  const icon = toast.querySelector("svg path");
+  toastMsg.textContent = message;
+  if(type === "error"){
+    toast.style.background = "var(--error)";
+    icon.setAttribute("d", "M18 6L6 18M6 6l12 12");
+  } else {
+    toast.style.background = "var(--green)";
+    icon.setAttribute("d", "M20 6L9 17l-5-5");
+  }
+  toast.classList.add("show");
+  setTimeout(()=> toast.classList.remove("show"), 3000);
+}
+document.getElementById("withdrawForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const amount = parseFloat(document.getElementById("amount").value);
+  const method = document.getElementById("method").value;
+  const binanceId = document.getElementById("binanceId").value;
+  if(!method){
+    showToast("Please select a withdrawal method", "error");
+    return;
+  }
+  if(amount < 100 || isNaN(amount)){
+    showToast("Minimum withdrawal amount is 100 VET", "error");
+    return;
+  }
+  if(!binanceId.trim()){
+    showToast("Please enter your Binance ID", "error");
+    return;
+  }
+  showToast("Withdraw Successful!", "success");
+});
+</script>
+</body>
+</html>
